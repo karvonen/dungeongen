@@ -9,11 +9,15 @@ Aika- ja tilavaatimukset ovat vielä avoinna, samoin se voiko käyttäjä antaa 
 
 ##Lisää toiminnallisuuksia joita on mahdollista toteuttaa jos aikaa on:
 -Ovien lisääminen oikeille paikoille luolastoon.
+
 -Piilotettujen salakäytävien sisällyttäminen.
+
 -Itsekeksitty generaattorialgoritmi.
+
 -Isojen luolastojen generointi jotka eivät mahdu kokonaan ruudulle. Näkymä liikkuu pelaajan mukana.
 
 
 ##Linkkejä/lähteitä:
 http://www.roguebasin.com/index.php?title=Dungeon-Building_Algorithm
+
 http://pcg.wikidot.com/pcg-algorithm:dungeon-generation
