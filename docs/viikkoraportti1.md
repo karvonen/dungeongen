@@ -4,7 +4,9 @@ Tällä viikolla mietin aihetta ja sen valittuani lueskelin artikkeleita luolast
 
 
 Aloitustilaisuus    1h
+
 Aiheen valinta, aiheesta lukeminen ja suunnittelu    3h
+
 Github, dokumentit yms.    1h
 
 yht. 5h
