@@ -12,8 +12,7 @@ public class Level {
 
     /**
      * Initializes the level by going through the character array which
-     * represents the map. Creates the player object and box objects, then
-     * replaces them in the level with a free tile.
+     * represents the map. 
      *
      */
     private void initialise() {

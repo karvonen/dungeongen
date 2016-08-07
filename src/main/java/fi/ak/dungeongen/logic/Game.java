@@ -15,6 +15,10 @@ public class Game {
         this.scanner = scanner;
     }
 
+    /**
+     * Starts a new game.
+     *
+     */
     public void start() {
         char[][] map = generator.generate();
         this.level = new Level(map);
@@ -23,6 +27,10 @@ public class Game {
         run();
     }
 
+    /**
+     * Starts the game loop.
+     *
+     */
     public void run() {
         while (true) {
             char command = getCommand();
@@ -71,8 +79,8 @@ public class Game {
     }
 
     /**
-     * Method tries to move the player to a new location. If the new location 
-     * is a staircase, a new game is started.
+     * Method tries to move the player to a new location. If the new location is
+     * a staircase, a new game is started.
      *
      * @param newPlayerLocation Location to which the move is attempted.
      *

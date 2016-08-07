@@ -16,8 +16,8 @@ public class LevelGenerator {
     }
 
     /**
-     * Method generates a new two dimensional character array that will
-     * act as the level.
+     * Method generates a new two dimensional character array that will act as
+     * the level.
      *
      * @return char[][] that is the level.
      */
@@ -40,14 +40,18 @@ public class LevelGenerator {
 
     private void placeStaircases() {
         while (true) {
-            if (map[random.nextInt(height - 2) + 1][random.nextInt(width - 2) + 1] == '.') {
-                map[random.nextInt(height - 2) + 1][random.nextInt(width - 2) + 1] = '<';
+            int randomRow = random.nextInt(height - 2) + 1;
+            int randomCol = random.nextInt(width - 2) + 1;
+            if (map[randomRow][randomRow] == '.') {
+                map[randomRow][randomCol] = '<';
                 break;
             }
         }
         while (true) {
-            if (map[random.nextInt(height - 2) + 1][random.nextInt(width - 2) + 1] == '.') {
-                map[random.nextInt(height - 2) + 1][random.nextInt(width - 2) + 1] = '>';
+            int randomRow = random.nextInt(height - 2) + 1;
+            int randomCol = random.nextInt(width - 2) + 1;
+            if (map[randomRow][randomCol] == '.') {
+                map[randomRow][randomCol] = '>';
                 break;
             }
         }
