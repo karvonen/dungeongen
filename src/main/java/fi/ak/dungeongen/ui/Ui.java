@@ -1,4 +1,4 @@
-package ui;
+package fi.ak.dungeongen.ui;
 
 import fi.ak.dungeongen.logic.*;
 

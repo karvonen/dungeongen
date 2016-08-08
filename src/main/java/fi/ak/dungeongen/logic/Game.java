@@ -1,7 +1,7 @@
 package fi.ak.dungeongen.logic;
 
 import java.util.Scanner;
-import ui.Ui;
+import fi.ak.dungeongen.ui.Ui;
 
 /**
  * Class has methods for starting and playing the game.
