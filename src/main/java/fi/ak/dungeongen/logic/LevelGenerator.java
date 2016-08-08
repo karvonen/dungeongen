@@ -2,6 +2,10 @@ package fi.ak.dungeongen.logic;
 
 import java.util.Random;
 
+/**
+ * Class generates new levels to play.
+ * 
+ */
 public class LevelGenerator {
 
     private char[][] map;

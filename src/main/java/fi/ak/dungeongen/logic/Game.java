@@ -3,16 +3,28 @@ package fi.ak.dungeongen.logic;
 import java.util.Scanner;
 import ui.Ui;
 
+/**
+ * Class has methods for starting and playing the game.
+ *
+ */
 public class Game {
 
     private Level level;
     private Ui ui;
     private Scanner scanner;
     private LevelGenerator generator;
+    private boolean debugMode;
+    private char[][] testLevel = new char[][]{
+        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+        {'#', '.', '.', '.', '#', '#', '#', '.', '.', '#'},
+        {'#', '.', '<', '.', '.', '.', '.', '.', '.', '#'},
+        {'#', '.', '.', '.', '#', '#', '#', '#', '>', '#'},
+        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
 
-    public Game(Scanner scanner, LevelGenerator generator) {
+    public Game(Scanner scanner, LevelGenerator generator, boolean debugMode) {
         this.generator = generator;
         this.scanner = scanner;
+        this.debugMode = debugMode;
     }
 
     /**
@@ -20,11 +32,26 @@ public class Game {
      *
      */
     public void start() {
+        if (debugMode) {
+            startInTestMode();
+            return;
+        }
+        
         char[][] map = generator.generate();
         this.level = new Level(map);
         this.ui = new Ui(level);
         ui.draw();
+        System.out.println("1-9 (numpad) to move, w to win instantly:");
         run();
+    }
+
+    /**
+     * Starts a new game in test mode, used for JUnit tests.
+     *
+     */
+    public void startInTestMode() {
+        this.level = new Level(testLevel);
+        this.ui = new Ui(level);
     }
 
     /**
@@ -46,6 +73,7 @@ public class Game {
      * @param command char that is interpreted as a direction.
      */
     public void executeGameCommand(char command) {
+
         Location newPlayerLocation = new Location(level.getPlayer().getLocation());
         if (command == '1') {
             newPlayerLocation.setCol(newPlayerLocation.getCol() - 1);
@@ -106,5 +134,13 @@ public class Game {
         } else {
             return '5';  // 5 as in 'wait' in roguelikes
         }
+    }
+
+    /**
+     * @return Currently active level.
+     *
+     */
+    public Level getLevel() {
+        return level;
     }
 }

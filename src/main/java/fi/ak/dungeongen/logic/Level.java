@@ -1,5 +1,10 @@
 package fi.ak.dungeongen.logic;
 
+/**
+ * Class constructs and maintains a level of the game. Only one instance of this
+ * class exists at one time and that is the currently being played level.
+ */
+
 public class Level {
 
     private Player player;
@@ -12,7 +17,7 @@ public class Level {
 
     /**
      * Initializes the level by going through the character array which
-     * represents the map. 
+     * represents the map.
      *
      */
     private void initialise() {

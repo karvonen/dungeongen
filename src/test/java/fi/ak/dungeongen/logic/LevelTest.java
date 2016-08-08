@@ -1,3 +1,4 @@
+package fi.ak.dungeongen.logic;
 
 import fi.ak.dungeongen.logic.Level;
 import fi.ak.dungeongen.logic.Location;
@@ -16,6 +17,7 @@ public class LevelTest {
         {'#', '.', '.', '#', '.', '.', '.', '.', '.', '#'},
         {'#', '.', '.', '.', '.', '#', '#', '#', '>', '#'},
         {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
+    private Level test = new Level(testLevel);
 
     public LevelTest() {
     }
@@ -38,19 +40,28 @@ public class LevelTest {
 
     @Test
     public void staircaseDown() {
-        Level test = new Level(testLevel);
         assertEquals(new Location(3, 8), test.getStaircaseDown());
     }
 
     @Test
     public void getTileFromLocationWall() {
-        Level test = new Level(testLevel);
         assertEquals('#', test.getTileFromLocation(new Location(0, 0)));
     }
 
     @Test
     public void getTileFromLocationFloor() {
-        Level test = new Level(testLevel);
         assertEquals('.', test.getTileFromLocation(new Location(3, 1)));
     }
+
+    @Test
+    public void stairsCanBeMovedOn() {
+        assertEquals(true, test.isTileFreeToBeMovedOn(new Location(1, 2)));
+        assertEquals(true, test.isTileFreeToBeMovedOn(new Location(3, 8)));
+    }
+
+    @Test
+    public void wallsBlockMovement() {
+        assertEquals(false, test.isTileFreeToBeMovedOn(new Location(0, 1)));
+    }
+
 }
