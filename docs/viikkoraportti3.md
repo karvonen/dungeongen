@@ -26,3 +26,10 @@ Tässä vaiheessa pystyin siis generoimaan huoneita helposti. Viikon suurin onge
 En ole vielä täysin tyytyväinen tähän algoritmiin. Useimmiten luolastot ovat ihan hyvän näköisiä mutta on myös mahdollista generoida luolastoja jotka eivät edes enää ole normaalin rogueliken luolaston näköisiä vaan enemmänkin avaria yksittäisiä kammioita. Yritän parannella algoritmia tulevilla viikoilla. Javalabran ohjeiden mukaan private metodeihin ei tarvitse tehdä javadoccia joten en tehnyt niitä tässäkään.
 
 Algoritmin parantamisen lisäksi seuraavalla viikolla aloitan tietorakenteiden ohjelmoimisen. Taulukoiden lisäksi olen käyttänyt vain listoja ja jonoja. Lisäksi ajattelin refaktoroida ja siistiä koodia. 
+
+
+Ohjelmointi 7h
+
+Suunnittelu, vaihtoehtojen tutkiminen 2h
+
+yht. 9h
