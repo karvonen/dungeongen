@@ -36,13 +36,33 @@ public class LevelGenerator {
     public char[][] generate() {
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
-        while (rooms.size() < 1) {
-            placeRooms(126);
-        }
+        placeRooms(222);
         placeStaircases();
 
         FloodFill floodFill = new FloodFill(map);
-        for (int i = 0; i < 525; i++) {
+
+        carve(floodFill);
+        desperateCarve(floodFill);
+
+        map[stairsDown.getRow()][stairsDown.getCol()] = '<';
+        map[stairsUp.getRow()][stairsUp.getCol()] = '>';
+        return map;
+    }
+
+    /**
+     * Method prints the map (used for debugging)
+     *
+     */
+    public void print() {
+        for (char[] row : map) {
+            System.out.print(Arrays.toString(row));
+            System.out.println("");
+        }
+        System.out.println("");
+    }
+
+    private void carve(FloodFill floodFill) {
+        for (int i = 0; i < 600; i++) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
             floodFill.floodFill();
 
@@ -53,7 +73,9 @@ public class LevelGenerator {
                 carveToConnect(randomLocation);
             }
         }
+    }
 
+    private void desperateCarve(FloodFill floodFill) {
         while (true) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
             floodFill.floodFill();
@@ -65,26 +87,13 @@ public class LevelGenerator {
                 desperateConnect(randomLocation);
             }
         }
-        map[stairsDown.getRow()][stairsDown.getCol()] = '<';
-        map[stairsUp.getRow()][stairsUp.getCol()] = '>';
-        return map;
-    }
-
-    public void print() {
-        for (char[] row : map) {
-            System.out.print(Arrays.toString(row));
-            System.out.println("");
-        }
-        System.out.println("");
-        System.out.println("");
-        System.out.println("");
     }
 
     private void carveToConnect(Location location) {
         int direction = 0;
         if (map[location.getRow() - 1][location.getCol()] == '#') {
             direction = 0;
-            for (int i = 0; i < 15; i++) {
+            for (int i = 0; i < 10; i++) {
                 if (location.getRow() - i < 2) {
                     return;
                 }
@@ -95,7 +104,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow()][location.getCol() + 1] == '#') {
             direction = 1;
-            for (int i = 1; i < 15; i++) {
+            for (int i = 1; i < 25; i++) {
                 if (location.getCol() > map[0].length - 1) {
                     return;
                 }
@@ -106,7 +115,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow() + 1][location.getCol()] == '#') {
             direction = 2;
-            for (int i = 1; i < 15; i++) {
+            for (int i = 1; i < 10; i++) {
                 if (location.getRow() + i > map.length - 1) {
                     return;
                 }
@@ -117,7 +126,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow()][location.getCol() - 1] == '#') {
             direction = 3;
-            for (int i = 1; i < 15; i++) {
+            for (int i = 1; i < 25; i++) {
                 if (location.getCol() - i < 2) {
                     return;
                 }
@@ -175,10 +184,10 @@ public class LevelGenerator {
     //http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other/306332#306332
     private boolean doesRoomFit(Room room) {
         for (Room existingRoom : rooms) {
-            boolean intersect = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth() + 1
-                    && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol() + 1
-                    && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight() + 1
-                    && room.getLocation().getRow() + room.getHeight() > existingRoom.getLocation().getRow() + 1);
+            boolean intersect = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
+                    && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol()
+                    && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight()
+                    && room.getLocation().getRow() + room.getHeight() > existingRoom.getLocation().getRow());
             if (intersect) {
                 return false;
             }

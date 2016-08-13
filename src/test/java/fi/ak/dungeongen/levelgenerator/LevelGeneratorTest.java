@@ -1,7 +1,7 @@
 package fi.ak.dungeongen.levelgenerator;
 
 
-import fi.ak.dungeongen.levelgenerator.LevelGenerator;
+import fi.ak.dungeongen.util.FloodFill;
 import java.util.Arrays;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -56,6 +56,18 @@ public class LevelGeneratorTest {
             }
         }
         assertEquals(1, count);
+    }
+    
+    @Test
+    public void allRoomsAreConnected() {
+        FloodFill ff = new FloodFill(new char[30][125]);
+        for (int i = 0; i < 100; i++) {
+            generator.reset();
+            char[][] level = generator.generate();
+            ff.setNewMap(level);
+            ff.floodFill();
+            assertEquals(true, ff.checkFill());
+        }
     }
     
 //    @Test
