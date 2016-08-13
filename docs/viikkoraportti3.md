@@ -7,6 +7,7 @@ Seuraavaksi aloin työstämään itse luolastogeneraattoria. Koska mikään algo
 Tästä tuli mieleeni yksi lisäominaisuus jonka voisin toteuttaa myöhemmillä viikoilla jos jää aikaa. Voisin tehdä generaattoriin asetuksia joiden pohjalta voidaan generoida hieman erilaisia luolastoja.
 
 Tässä vaiheessa pystyin siis generoimaan huoneita helposti. Viikon suurin ongelma oli niiden yhdistäminen. Mietin ja testailin pariakin eri vaihtoehtoa ennen kuin päädyin nykyiseen implementaation. Tällä hetkellä luolastogeneraattori toimii näin:
+
 1. Täytetään koko luolasto seinillä.
 2. Lisätään luolastoon huoneita satunnaisesti. Huoneet voivat olla vierekkäin jolloin niissä ei ole seinää välissä mutta eivät voi olla päällekkäin.
 3. Lisätään portaat alas ja ylös. Portaat ovat siis aina huoneessa eivätkä koskaan käytävässä koska käytäviä ei vielä ole.
