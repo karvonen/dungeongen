@@ -1,5 +1,6 @@
 package fi.ak.dungeongen.logic;
 
+import fi.ak.dungeongen.levelgenerator.LevelGenerator;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
 import java.util.Scanner;

@@ -1,5 +1,6 @@
 package fi.ak.dungeongen.logic;
 
+import fi.ak.dungeongen.levelgenerator.LevelGenerator;
 import java.util.Scanner;
 import fi.ak.dungeongen.ui.Ui;
 
@@ -36,7 +37,7 @@ public class Game {
             startInTestMode();
             return;
         }
-        
+        generator.reset();
         char[][] map = generator.generate();
         this.level = new Level(map);
         this.ui = new Ui(level);
@@ -103,7 +104,6 @@ public class Game {
         if (newPlayerLocation != level.getPlayer().getLocation()) {
             attemptPlayerMove(newPlayerLocation);
         }
-        ui.draw();
     }
 
     /**
