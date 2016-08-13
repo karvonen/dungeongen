@@ -11,14 +11,14 @@ Tässä vaiheessa pystyin siis generoimaan huoneita helposti. Viikon suurin onge
 2. Lisätään luolastoon huoneita satunnaisesti. Huoneet voivat olla vierekkäin jolloin niissä ei ole seinää välissä mutta eivät voi olla päällekkäin.
 3. Lisätään portaat alas ja ylös. Portaat ovat siis aina huoneessa eivätkä koskaan käytävässä koska käytäviä ei vielä ole.
 4. Yhdistellään huoneita järkevästi kaivamalla käytäviä.
-..1. Valitaan satunnaisesti seinä. Seinän suunnan perusteella päätellään mikä suunta on huoneesta pois päin.
-..2. Katsotaan saadaanko siihen suuntaan menemällä yhdistettyä huone toiseen huoneeseen tai käytävään (eli tuleeko vastaan kuljettava ruutu)
-..3. Kaivetaan tunneli jos vastaan tulee kuljettava ruutu kaivetaan tunneli.
-..4. Jos vastaan ei tule kuljettavaa ruutua ei kaiveta mitään.
+  1. Valitaan satunnaisesti seinä. Seinän suunnan perusteella päätellään mikä suunta on huoneesta pois päin.
+  2. Katsotaan saadaanko siihen suuntaan menemällä yhdistettyä huone toiseen huoneeseen tai käytävään (eli tuleeko vastaan kuljettava ruutu)
+  3. Kaivetaan tunneli jos vastaan tulee kuljettava ruutu kaivetaan tunneli.
+  4. Jos vastaan ei tule kuljettavaa ruutua ei kaiveta mitään.
 5. Kaivetaan tunneleita satunnaisesti. 
-..1. Valitaan seinä.
-..2. Kaivetaan tunneli.
-..3. Tarkistetaan onko luolasto yhtenäinen. Jos on, lopetataan. Jos ei ole jatketaan kaivamista.
+  1. Valitaan seinä.
+  2. Kaivetaan tunneli.
+  3. Tarkistetaan onko luolasto yhtenäinen. Jos on, lopetataan. Jos ei ole jatketaan kaivamista.
 6. Laitetaan portaat paikoilleen kohdassa 3 arvottuihin paikkoihin. Tämä siksi että kohta 5 voi muuten ylikirjoittaa portaat tunnelilla.
 
 
