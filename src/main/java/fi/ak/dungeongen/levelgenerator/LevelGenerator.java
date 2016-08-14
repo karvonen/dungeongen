@@ -21,8 +21,17 @@ public class LevelGenerator {
     private Location stairsUp;
     private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
     private static final int MAX_ROOM_WIDTH = 15; // randoms 0-15  +4 = 4-19
-    private static final int MAX_TUNNEL_LENGTH_VERTICAL = 10;
+    private static final int MAX_TUNNEL_LENGTH_VERTICAL = 7;
     private static final int MAX_TUNNEL_LENGTH_HORIZONTAL = 25;
+    /**
+     * Directions: 0 = up, 1 = right, 2 = down, 3 = left This array is used to
+     * as a weighted random direction selector. As the level is rectangular,
+     * digging tunnels horizontally should happen more often than digging
+     * vertically.
+     */
+    private static final int[] directionWeights = new int[]{0, 1, 1, 2, 3, 3};
+    int carveCountDebug;
+    int desperateCarveDebug;
 
     public LevelGenerator(int height, int width) {
         this.random = new Random();
@@ -38,6 +47,8 @@ public class LevelGenerator {
      * @return char[][] that is the level.
      */
     public char[][] generate() {
+        carveCountDebug = 0;
+        desperateCarveDebug = 0;
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
         placeRooms(222);
@@ -50,6 +61,8 @@ public class LevelGenerator {
 
         map[stairsDown.getRow()][stairsDown.getCol()] = '<';
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
+        System.out.println("carve count: " + carveCountDebug);
+        System.out.println("desperate count: " + desperateCarveDebug);
         return map;
     }
 
@@ -66,16 +79,40 @@ public class LevelGenerator {
     }
 
     private void carve(FloodFill floodFill) {
-        for (int i = 0; i < 600; i++) {
+        for (int i = 0; i < 45; i++) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
             floodFill.start();
-
             if (floodFill.checkFill()) {
                 break;
             } else {
-                Location randomLocation = floodFill.getRandomTile();
-                carveToConnect(randomLocation);
+                Location randomLocatioNextToWall = getRandomLocatioNextToWall();
+                carveToConnect(randomLocatioNextToWall);
             }
+        }
+    }
+
+    private Location getRandomLocatioNextToWall() {
+        Room room = rooms.get(random.nextInt(rooms.size()));
+
+        int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
+
+        int wallLength = 0;
+        if (direction == 1 || direction == 3) {
+            wallLength = room.getHeight();
+        } else {
+            wallLength = room.getWidth();
+        }
+
+        int spot = random.nextInt(wallLength - 2) + 1;
+
+        if (direction == 0) {
+            return new Location(room.getLocation().getRow(), room.getLocation().getCol() + spot);
+        } else if (direction == 1) {
+            return new Location(room.getLocation().getRow() + spot, room.getLocation().getCol() + room.getWidth() - 1);
+        } else if (direction == 2) {
+            return new Location(room.getLocation().getRow() + room.getHeight() - 1, room.getLocation().getCol() + spot);
+        } else {
+            return new Location(room.getLocation().getRow() + spot, room.getLocation().getCol());
         }
     }
 
@@ -83,7 +120,6 @@ public class LevelGenerator {
         while (true) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
             floodFill.start();
-
             if (floodFill.checkFill()) {
                 break;
             } else {
@@ -97,23 +133,25 @@ public class LevelGenerator {
         int direction = 0;
         if (map[location.getRow() - 1][location.getCol()] == '#') {
             direction = 0;
-            for (int i = 0; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
+            for (int i = 1; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
                 if (location.getRow() - i < 2) {
                     return;
                 }
                 if (map[location.getRow() - i][location.getCol()] == '.') {
                     connect(location, direction, i);
+                    carveCountDebug++;
                     return;
                 }
             }
         } else if (map[location.getRow()][location.getCol() + 1] == '#') {
             direction = 1;
             for (int i = 1; i < MAX_TUNNEL_LENGTH_HORIZONTAL; i++) {
-                if (location.getCol() > map[0].length - 1) {
+                if (location.getCol() + i > map[0].length - 1) {
                     return;
                 }
-                if (map[location.getRow() - i][location.getCol()] == '.') {
+                if (map[location.getRow()][location.getCol() + i] == '.') {
                     connect(location, direction, i);
+                    carveCountDebug++;
                     return;
                 }
             }
@@ -125,6 +163,7 @@ public class LevelGenerator {
                 }
                 if (map[location.getRow() + i][location.getCol()] == '.') {
                     connect(location, direction, i);
+                    carveCountDebug++;
                     return;
                 }
             }
@@ -136,6 +175,7 @@ public class LevelGenerator {
                 }
                 if (map[location.getRow()][location.getCol() - i] == '.') {
                     connect(location, direction, i);
+                    carveCountDebug++;
                     return;
                 }
             }
@@ -145,8 +185,8 @@ public class LevelGenerator {
 
     private void desperateConnect(Location location) {
         int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
-        int direction = random.nextInt(4);
-
+        int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
+        desperateCarveDebug++;
         connect(location, direction, len);
     }
 
