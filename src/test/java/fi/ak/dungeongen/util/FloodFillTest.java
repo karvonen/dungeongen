@@ -37,7 +37,7 @@ public class FloodFillTest {
             {'#', '.', '.', '.', '#', '#', '#', '#', '>', '#'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
         FloodFill ff = new FloodFill(testLevel);
-        ff.floodFill();
+        ff.start();
         assertEquals(true, ff.checkFill());
     }
 
@@ -50,7 +50,7 @@ public class FloodFillTest {
             {'#', '.', '.', '.', '#', '.', '.', '#', '>', '#'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
         FloodFill ff = new FloodFill(testLevel);
-        ff.floodFill();
+        ff.start();
         assertEquals(false, ff.checkFill());
     }
 

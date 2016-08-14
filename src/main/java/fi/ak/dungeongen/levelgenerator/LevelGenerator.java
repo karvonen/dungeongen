@@ -19,6 +19,10 @@ public class LevelGenerator {
     private ArrayList<Room> rooms;
     private Location stairsDown;
     private Location stairsUp;
+    private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
+    private static final int MAX_ROOM_WIDTH = 15; // randoms 0-15  +4 = 4-19
+    private static final int MAX_TUNNEL_LENGTH_VERTICAL = 10;
+    private static final int MAX_TUNNEL_LENGTH_HORIZONTAL = 25;
 
     public LevelGenerator(int height, int width) {
         this.random = new Random();
@@ -64,7 +68,7 @@ public class LevelGenerator {
     private void carve(FloodFill floodFill) {
         for (int i = 0; i < 600; i++) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
-            floodFill.floodFill();
+            floodFill.start();
 
             if (floodFill.checkFill()) {
                 break;
@@ -78,7 +82,7 @@ public class LevelGenerator {
     private void desperateCarve(FloodFill floodFill) {
         while (true) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
-            floodFill.floodFill();
+            floodFill.start();
 
             if (floodFill.checkFill()) {
                 break;
@@ -93,7 +97,7 @@ public class LevelGenerator {
         int direction = 0;
         if (map[location.getRow() - 1][location.getCol()] == '#') {
             direction = 0;
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
                 if (location.getRow() - i < 2) {
                     return;
                 }
@@ -104,7 +108,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow()][location.getCol() + 1] == '#') {
             direction = 1;
-            for (int i = 1; i < 25; i++) {
+            for (int i = 1; i < MAX_TUNNEL_LENGTH_HORIZONTAL; i++) {
                 if (location.getCol() > map[0].length - 1) {
                     return;
                 }
@@ -115,7 +119,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow() + 1][location.getCol()] == '#') {
             direction = 2;
-            for (int i = 1; i < 10; i++) {
+            for (int i = 1; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
                 if (location.getRow() + i > map.length - 1) {
                     return;
                 }
@@ -126,7 +130,7 @@ public class LevelGenerator {
             }
         } else if (map[location.getRow()][location.getCol() - 1] == '#') {
             direction = 3;
-            for (int i = 1; i < 25; i++) {
+            for (int i = 1; i < MAX_TUNNEL_LENGTH_HORIZONTAL; i++) {
                 if (location.getCol() - i < 2) {
                     return;
                 }
@@ -140,7 +144,7 @@ public class LevelGenerator {
     }
 
     private void desperateConnect(Location location) {
-        int len = random.nextInt(15) + 2;
+        int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
         int direction = random.nextInt(4);
 
         connect(location, direction, len);
@@ -168,11 +172,10 @@ public class LevelGenerator {
 
     private void placeRooms(int number) {
         for (int i = 0; i < number; i++) {
-
             int roomRow = random.nextInt(height - 1) + 1;
             int roomCol = random.nextInt(width - 1) + 1;
-            int roomHeight = random.nextInt(5) + 4;
-            int roomWidth = random.nextInt(15) + 4;
+            int roomHeight = random.nextInt(MAX_ROOM_HEIGHT) + 4;
+            int roomWidth = random.nextInt(MAX_ROOM_WIDTH) + 4;
             Room temp = new Room(new Location(roomRow, roomCol), roomHeight, roomWidth);
             if (checkBoundsForRoom(temp) && doesRoomFit(temp)) {
                 rooms.add(temp);
@@ -184,11 +187,11 @@ public class LevelGenerator {
     //http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other/306332#306332
     private boolean doesRoomFit(Room room) {
         for (Room existingRoom : rooms) {
-            boolean intersect = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
+            boolean overlap = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
                     && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol()
                     && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight()
                     && room.getLocation().getRow() + room.getHeight() > existingRoom.getLocation().getRow());
-            if (intersect) {
+            if (overlap) {
                 return false;
             }
         }

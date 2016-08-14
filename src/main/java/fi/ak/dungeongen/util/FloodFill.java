@@ -36,7 +36,7 @@ public class FloodFill {
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
     }
 
-    public void floodFill() {
+    public void start() {
         queue = new ArrayDeque<>();
         try {
             queue.addLast(getStairsDown());

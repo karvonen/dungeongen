@@ -65,7 +65,7 @@ public class LevelGeneratorTest {
             generator.reset();
             char[][] level = generator.generate();
             ff.setNewMap(level);
-            ff.floodFill();
+            ff.start();
             assertEquals(true, ff.checkFill());
         }
     }
