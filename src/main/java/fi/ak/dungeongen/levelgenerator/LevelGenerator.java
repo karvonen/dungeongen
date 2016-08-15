@@ -31,7 +31,6 @@ public class LevelGenerator {
      */
     private static final int[] directionWeights = new int[]{0, 1, 1, 2, 3, 3};
 
-    
     public LevelGenerator(int height, int width) {
         this.random = new Random();
         this.height = height;
@@ -54,7 +53,7 @@ public class LevelGenerator {
         FloodFill floodFill = new FloodFill(map);
         TunnelCarver tunnelCarver = new TunnelCarver(MAX_TUNNEL_LENGTH_VERTICAL, MAX_TUNNEL_LENGTH_HORIZONTAL);
         carve(floodFill, tunnelCarver);
-        desperateCarve(floodFill);
+        desperateCarve(floodFill, new DesperateTunnelCarver());
 
         map[stairsDown.getRow()][stairsDown.getCol()] = '<';
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
@@ -86,6 +85,21 @@ public class LevelGenerator {
         }
     }
 
+    private void desperateCarve(FloodFill floodFill, DesperateTunnelCarver desperateTunnelCarver) {
+        while (true) {
+            floodFill.setNewMap(map, stairsDown, stairsUp);
+            floodFill.start();
+            if (floodFill.checkFill()) {
+                break;
+            } else {
+                Location randomLocation = floodFill.getRandomTile();
+                int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
+                int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
+                desperateTunnelCarver.connect(map, randomLocation, direction, len);
+            }
+        }
+    }
+
     private Location getRandomLocatioNextToWall() {
         Room room = rooms.get(random.nextInt(rooms.size()));
 
@@ -111,49 +125,8 @@ public class LevelGenerator {
         }
     }
 
-    private void desperateCarve(FloodFill floodFill) {
-        while (true) {
-            floodFill.setNewMap(map, stairsDown, stairsUp);
-            floodFill.start();
-            if (floodFill.checkFill()) {
-                break;
-            } else {
-                Location randomLocation = floodFill.getRandomTile();
-                desperateConnect(randomLocation);
-            }
-        }
-    }
-
-   
-
-    private void desperateConnect(Location location) {
-        int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
-        int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
-        connect(location, direction, len);
-    }
-
-    private void connect(Location location, int direction, int length) {
-        if (direction == 0 && location.getRow() - length > 0) {
-            for (int i = 0; i < length; i++) {
-                map[location.getRow() - i][location.getCol()] = '.';
-            }
-        } else if (direction == 1 && location.getCol() + length < map[0].length - 1) {
-            for (int i = 0; i < length; i++) {
-                map[location.getRow()][location.getCol() + i] = '.';
-            }
-        } else if (direction == 2 && location.getRow() + length < map.length - 1) {
-            for (int i = 0; i < length; i++) {
-                map[location.getRow() + i][location.getCol()] = '.';
-            }
-        } else if (direction == 3 && location.getCol() - length > 0) {
-            for (int i = 0; i < length; i++) {
-                map[location.getRow()][location.getCol() - i] = '.';
-            }
-        }
-    }
-
-    private void placeRooms(RoomGenerator roomGenerator, int number) {
-        for (int i = 0; i < number; i++) {
+    private void placeRooms(RoomGenerator roomGenerator, int count) {
+        for (int i = 0; i < count; i++) {
             Room temp = roomGenerator.generateRoom();
             if (roomGenerator.checkBoundsForRoom(temp) && roomGenerator.doesRoomFit(rooms, temp)) {
                 rooms.add(temp);
@@ -169,8 +142,6 @@ public class LevelGenerator {
             }
         }
     }
-
-
 
     private void placeStaircases() {
         while (true) {
