@@ -30,9 +30,8 @@ public class LevelGenerator {
      * vertically.
      */
     private static final int[] directionWeights = new int[]{0, 1, 1, 2, 3, 3};
-    int carveCountDebug;
-    int desperateCarveDebug;
 
+    
     public LevelGenerator(int height, int width) {
         this.random = new Random();
         this.height = height;
@@ -47,22 +46,18 @@ public class LevelGenerator {
      * @return char[][] that is the level.
      */
     public char[][] generate() {
-        carveCountDebug = 0;
-        desperateCarveDebug = 0;
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
         placeRooms(222);
         placeStaircases();
 
         FloodFill floodFill = new FloodFill(map);
-
-        carve(floodFill);
-        desperateCarve(floodFill);
+        TunnelCarver tunnelCarver = new TunnelCarver(MAX_TUNNEL_LENGTH_VERTICAL, MAX_TUNNEL_LENGTH_HORIZONTAL);
+        carve(floodFill, tunnelCarver);
+//        desperateCarve(floodFill);
 
         map[stairsDown.getRow()][stairsDown.getCol()] = '<';
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
-        System.out.println("carve count: " + carveCountDebug);
-        System.out.println("desperate count: " + desperateCarveDebug);
         return map;
     }
 
@@ -78,7 +73,7 @@ public class LevelGenerator {
         System.out.println("");
     }
 
-    private void carve(FloodFill floodFill) {
+    private void carve(FloodFill floodFill, TunnelCarver tunnelCarver) {
         for (int i = 0; i < 45; i++) {
             floodFill.setNewMap(map, stairsDown, stairsUp);
             floodFill.start();
@@ -86,7 +81,7 @@ public class LevelGenerator {
                 break;
             } else {
                 Location randomLocatioNextToWall = getRandomLocatioNextToWall();
-                carveToConnect(randomLocatioNextToWall);
+                tunnelCarver.startCarve(map, randomLocatioNextToWall);
             }
         }
     }
@@ -129,64 +124,11 @@ public class LevelGenerator {
         }
     }
 
-    private void carveToConnect(Location location) {
-        int direction = 0;
-        if (map[location.getRow() - 1][location.getCol()] == '#') {
-            direction = 0;
-            for (int i = 1; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
-                if (location.getRow() - i < 2) {
-                    return;
-                }
-                if (map[location.getRow() - i][location.getCol()] == '.') {
-                    connect(location, direction, i);
-                    carveCountDebug++;
-                    return;
-                }
-            }
-        } else if (map[location.getRow()][location.getCol() + 1] == '#') {
-            direction = 1;
-            for (int i = 1; i < MAX_TUNNEL_LENGTH_HORIZONTAL; i++) {
-                if (location.getCol() + i > map[0].length - 1) {
-                    return;
-                }
-                if (map[location.getRow()][location.getCol() + i] == '.') {
-                    connect(location, direction, i);
-                    carveCountDebug++;
-                    return;
-                }
-            }
-        } else if (map[location.getRow() + 1][location.getCol()] == '#') {
-            direction = 2;
-            for (int i = 1; i < MAX_TUNNEL_LENGTH_VERTICAL; i++) {
-                if (location.getRow() + i > map.length - 1) {
-                    return;
-                }
-                if (map[location.getRow() + i][location.getCol()] == '.') {
-                    connect(location, direction, i);
-                    carveCountDebug++;
-                    return;
-                }
-            }
-        } else if (map[location.getRow()][location.getCol() - 1] == '#') {
-            direction = 3;
-            for (int i = 1; i < MAX_TUNNEL_LENGTH_HORIZONTAL; i++) {
-                if (location.getCol() - i < 2) {
-                    return;
-                }
-                if (map[location.getRow()][location.getCol() - i] == '.') {
-                    connect(location, direction, i);
-                    carveCountDebug++;
-                    return;
-                }
-            }
-        }
-
-    }
+   
 
     private void desperateConnect(Location location) {
         int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
         int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
-        desperateCarveDebug++;
         connect(location, direction, len);
     }
 
