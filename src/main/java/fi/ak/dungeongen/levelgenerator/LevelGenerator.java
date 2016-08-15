@@ -48,13 +48,13 @@ public class LevelGenerator {
     public char[][] generate() {
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
-        placeRooms(222);
+        placeRooms(new RoomGenerator(random, MAX_ROOM_HEIGHT, MAX_ROOM_WIDTH, height, width), 222);
         placeStaircases();
 
         FloodFill floodFill = new FloodFill(map);
         TunnelCarver tunnelCarver = new TunnelCarver(MAX_TUNNEL_LENGTH_VERTICAL, MAX_TUNNEL_LENGTH_HORIZONTAL);
         carve(floodFill, tunnelCarver);
-//        desperateCarve(floodFill);
+        desperateCarve(floodFill);
 
         map[stairsDown.getRow()][stairsDown.getCol()] = '<';
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
@@ -152,36 +152,14 @@ public class LevelGenerator {
         }
     }
 
-    private void placeRooms(int number) {
+    private void placeRooms(RoomGenerator roomGenerator, int number) {
         for (int i = 0; i < number; i++) {
-            int roomRow = random.nextInt(height - 1) + 1;
-            int roomCol = random.nextInt(width - 1) + 1;
-            int roomHeight = random.nextInt(MAX_ROOM_HEIGHT) + 4;
-            int roomWidth = random.nextInt(MAX_ROOM_WIDTH) + 4;
-            Room temp = new Room(new Location(roomRow, roomCol), roomHeight, roomWidth);
-            if (checkBoundsForRoom(temp) && doesRoomFit(temp)) {
+            Room temp = roomGenerator.generateRoom();
+            if (roomGenerator.checkBoundsForRoom(temp) && roomGenerator.doesRoomFit(rooms, temp)) {
                 rooms.add(temp);
-                addRoom(temp);
+                roomGenerator.carveRoom(map, temp);
             }
         }
-    }
-
-    //http://stackoverflow.com/questions/306316/determine-if-two-rectangles-overlap-each-other/306332#306332
-    private boolean doesRoomFit(Room room) {
-        for (Room existingRoom : rooms) {
-            boolean overlap = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
-                    && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol()
-                    && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight()
-                    && room.getLocation().getRow() + room.getHeight() > existingRoom.getLocation().getRow());
-            if (overlap) {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkBoundsForRoom(Room room) {
-        return room.getLocation().getRow() + room.getHeight() < map.length - 1 && room.getLocation().getCol() + room.getWidth() < map[0].length - 1;
     }
 
     private void fillRect(Location topLeft, Location bottomRight, char tile) {
@@ -192,13 +170,7 @@ public class LevelGenerator {
         }
     }
 
-    private void addRoom(Room room) {
-        for (int i = 0; i < room.getHeight(); i++) {
-            for (int j = 0; j < room.getWidth(); j++) {
-                map[room.getLocation().getRow() + i][room.getLocation().getCol() + j] = '.';
-            }
-        }
-    }
+
 
     private void placeStaircases() {
         while (true) {
