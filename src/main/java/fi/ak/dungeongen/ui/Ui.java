@@ -2,6 +2,9 @@ package fi.ak.dungeongen.ui;
 
 import fi.ak.dungeongen.logic.*;
 
+/**
+ * Class provides basic printing of a level with player and stairs.
+ */
 public class Ui {
 
     private Level level;
@@ -12,7 +15,7 @@ public class Ui {
 
     /**
      * Method prints out the board and player.
-     * 
+     *
      */
     public void draw() {
         for (int i = 0; i < level.getHeight(); i++) {

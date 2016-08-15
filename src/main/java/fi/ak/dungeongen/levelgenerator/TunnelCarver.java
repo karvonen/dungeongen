@@ -31,7 +31,6 @@ public class TunnelCarver {
             carveDown(map, location);
         } else if (map[location.getRow()][location.getCol() - 1] == '#') {
             carveLeft(map, location);
-
         }
     }
 

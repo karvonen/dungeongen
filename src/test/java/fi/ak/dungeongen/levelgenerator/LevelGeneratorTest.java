@@ -60,11 +60,14 @@ public class LevelGeneratorTest {
     
     @Test
     public void allRoomsAreConnected() {
-        FloodFill ff = new FloodFill(new char[30][125]);
-        for (int i = 0; i < 100; i++) {
+        
+        FloodFill ff = new FloodFill(generator.generate(), generator.stairsDown, generator.stairsUp);
+        
+        for (int i = 0; i < 200; i++) {
             generator.reset();
             char[][] level = generator.generate();
-            ff.setNewMap(level);
+//            System.out.println("new");
+            ff.setNewMap(level, generator.stairsDown, generator.stairsUp);
             ff.start();
             assertEquals(true, ff.checkFill());
         }

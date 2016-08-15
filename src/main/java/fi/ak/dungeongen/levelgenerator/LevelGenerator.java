@@ -17,8 +17,8 @@ public class LevelGenerator {
     private int width;
     private Random random;
     private ArrayList<Room> rooms;
-    private Location stairsDown;
-    private Location stairsUp;
+    Location stairsDown;
+    Location stairsUp;
     private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
     private static final int MAX_ROOM_WIDTH = 15; // randoms 0-15  +4 = 4-19
     private static final int MAX_TUNNEL_LENGTH_VERTICAL = 7;
@@ -50,7 +50,7 @@ public class LevelGenerator {
         placeRooms(new RoomGenerator(random, MAX_ROOM_HEIGHT, MAX_ROOM_WIDTH, height, width), 222);
         placeStaircases();
 
-        FloodFill floodFill = new FloodFill(map);
+        FloodFill floodFill = new FloodFill(map, stairsDown, stairsUp);
         TunnelCarver tunnelCarver = new TunnelCarver(MAX_TUNNEL_LENGTH_VERTICAL, MAX_TUNNEL_LENGTH_HORIZONTAL);
         carve(floodFill, tunnelCarver);
         desperateCarve(floodFill, new DesperateTunnelCarver());
@@ -92,7 +92,7 @@ public class LevelGenerator {
             if (floodFill.checkFill()) {
                 break;
             } else {
-                Location randomLocation = floodFill.getRandomTile();
+                Location randomLocation = floodFill.getRandomFloorTile();
                 int len = random.nextInt(MAX_TUNNEL_LENGTH_HORIZONTAL) + 5;
                 int direction = directionWeights[random.nextInt(directionWeights.length - 1)];
                 desperateTunnelCarver.connect(map, randomLocation, direction, len);
@@ -148,15 +148,17 @@ public class LevelGenerator {
             int randomRow = random.nextInt(height - 2) + 1;
             int randomCol = random.nextInt(width - 2) + 1;
             if (map[randomRow][randomCol] == '.') {
-                stairsDown = new Location(randomRow, randomCol);
+                stairsUp = new Location(randomRow, randomCol);
+//                System.out.println("stairs up: " + stairsUp.getRow() + " " + stairsUp.getCol());
                 break;
             }
         }
         while (true) {
             int randomRow = random.nextInt(height - 2) + 1;
             int randomCol = random.nextInt(width - 2) + 1;
-            if (map[randomRow][randomCol] == '.' && new Location(randomRow, randomCol) != stairsDown) {
-                stairsUp = new Location(randomRow, randomCol);
+            if (map[randomRow][randomCol] == '.' && stairsUp.getCol() != randomCol && stairsUp.getRow() != randomRow) {
+                stairsDown = new Location(randomRow, randomCol);
+//                System.out.println("stairs down: " + stairsDown.getRow() + " " + stairsDown.getCol());
                 break;
             }
         }

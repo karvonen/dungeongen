@@ -1,5 +1,6 @@
 package fi.ak.dungeongen.util;
 
+import fi.ak.dungeongen.logic.Location;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,7 +37,7 @@ public class FloodFillTest {
             {'#', '.', '<', '.', '.', '.', '.', '.', '.', '#'},
             {'#', '.', '.', '.', '#', '#', '#', '#', '>', '#'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
-        FloodFill ff = new FloodFill(testLevel);
+        FloodFill ff = new FloodFill(testLevel, new Location(2, 2), new Location(3, 8));
         ff.start();
         assertEquals(true, ff.checkFill());
     }
@@ -49,7 +50,7 @@ public class FloodFillTest {
             {'#', '.', '<', '.', '#', '.', '.', '.', '.', '#'},
             {'#', '.', '.', '.', '#', '.', '.', '#', '>', '#'},
             {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
-        FloodFill ff = new FloodFill(testLevel);
+        FloodFill ff = new FloodFill(testLevel, new Location(2, 2), new Location(3, 8));
         ff.start();
         assertEquals(false, ff.checkFill());
     }

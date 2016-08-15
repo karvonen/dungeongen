@@ -5,26 +5,51 @@ import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Random;
 
+/**
+ * Class provides a flood-fill algorithm to check if all rooms in a level
+ * existing in a char[][] is fully connected.
+ */
 public class FloodFill {
 
     private char[][] map;
     private ArrayDeque<Location> queue;
     private Random random;
 
-    public FloodFill(char[][] baseMap) {
-        setNewMap(baseMap);
+//    public FloodFill(char[][] baseMap) {
+//        setNewMap(baseMap);
+//        random = new Random();
+//    }
+
+    public FloodFill(char[][] baseMap, Location stairsDown, Location stairsUp) {
+        setNewMap(baseMap, stairsDown, stairsUp);
         random = new Random();
     }
 
-    public void setNewMap(char[][] newMap) {
-        this.map = new char[newMap.length][newMap[0].length];
-        for (int i = 0; i < newMap.length; i++) {
-            for (int j = 0; j < newMap[0].length; j++) {
-                map[i][j] = newMap[i][j];
-            }
-        }
-    }
+//    /**
+//     * Method sets the flood-fill to use a new map including stairs as
+//     * locations.
+//     *
+//     * @param newMap new map to be flood-filled.
+//     *
+//     */
+//    public void setNewMap(char[][] newMap) {
+//        this.map = new char[newMap.length][newMap[0].length];
+//        for (int i = 0; i < newMap.length; i++) {
+//            for (int j = 0; j < newMap[0].length; j++) {
+//                map[i][j] = newMap[i][j];
+//            }
+//        }
+//    }
 
+    /**
+     * Method sets the flood-fill to use a new map including stairs as
+     * locations.
+     *
+     * @param newMap new map to be flood-filled.
+     * @param stairsDown location for stairs down.
+     * @param stairsUp location for stairs up.
+     *
+     */
     public void setNewMap(char[][] newMap, Location stairsDown, Location stairsUp) {
         this.map = new char[newMap.length][newMap[0].length];
         for (int i = 0; i < newMap.length; i++) {
@@ -36,6 +61,10 @@ public class FloodFill {
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
     }
 
+    /**
+     * Method starts flood-filling a level from stairs down.
+     *
+     */
     public void start() {
         queue = new ArrayDeque<>();
         try {
@@ -82,6 +111,11 @@ public class FloodFill {
         }
     }
 
+    /**
+     * Method checks if flood-fill successfully traversed the whole level.
+     *
+     * @return true if whole level was traversed, false otherwise.
+     */
     public boolean checkFill() {
         for (char[] row : map) {
             String rowString = Arrays.toString(row);
@@ -92,7 +126,12 @@ public class FloodFill {
         return true;
     }
 
-    public Location getRandomTile() {
+    /**
+     * Method finds a random floor tile.
+     *
+     * @return location for a random floor tile.
+     */
+    public Location getRandomFloorTile() {
         while (true) {
             int row = random.nextInt(map.length - 2) + 1;
             int col = random.nextInt(map[0].length - 2) + 1;
@@ -103,6 +142,13 @@ public class FloodFill {
 
     }
 
+    /**
+     * Method checks if a location has a tile that can be moved on.
+     *
+     * @param location location being inspected
+     *
+     * @return boolean true if location can be moved on, otherwise false.
+     */
     public boolean isTraversable(Location location) {
         if (map[location.getCol()][location.getRow()] == '.'
                 || map[location.getCol()][location.getRow()] == '<'
@@ -112,6 +158,12 @@ public class FloodFill {
         return false;
     }
 
+    /**
+     * Method finds and returns location where stairs are.
+     *
+     * @return location of the stairs down..
+     * @throws java.lang.Exception if stairs are not found.
+     */
     public Location getStairsDown() throws Exception {
         for (int i = 0; i < map.length; i++) {
             for (int j = 0; j < map[0].length; j++) {
