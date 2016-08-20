@@ -3,7 +3,8 @@ package fi.ak.dungeongen.levelgenerator;
 import fi.ak.dungeongen.logic.Location;
 
 /**
- * Class provides a desperate tunnel carver if everything else fails.
+ * Class provides a desperate tunnel carver if everything else fails. It will
+ * tunnel through a char[][] level trying to connect rooms.
  */
 public class DesperateTunnelCarver {
 

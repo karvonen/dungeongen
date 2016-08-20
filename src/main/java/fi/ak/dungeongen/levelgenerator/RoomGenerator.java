@@ -4,6 +4,10 @@ import fi.ak.dungeongen.logic.Location;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Class generates rooms to be fitted on a level of char[][]. Each room's
+ * coordinates and dimensions are checked to see if it fits.
+ */
 public class RoomGenerator {
 
     private final Random random;

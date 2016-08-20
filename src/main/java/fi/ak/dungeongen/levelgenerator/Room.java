@@ -2,7 +2,9 @@
 package fi.ak.dungeongen.levelgenerator;
 
 import fi.ak.dungeongen.logic.Location;
-
+/**
+ * A room object is used to keep track of generated rooms.
+ */
 public class Room{
 
     private Location location;

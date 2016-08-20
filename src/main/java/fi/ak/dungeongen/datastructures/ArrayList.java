@@ -5,6 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
+/**
+ * Class provides functionality for an ordered list.
+ */
 public class ArrayList<T> implements List<T> {
 
     private T[] list;

@@ -3,9 +3,11 @@ package fi.ak.dungeongen.datastructures;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.Iterator;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
+/**
+ * Class provides functionality for a queue.
+ */
 public class MyQueue<T> implements Deque<T> {
 
     private T[] queue;
