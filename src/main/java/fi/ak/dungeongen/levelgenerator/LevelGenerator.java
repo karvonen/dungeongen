@@ -26,7 +26,7 @@ public class LevelGenerator {
     private static final int MAX_TUNNEL_LENGTH_VERTICAL = 7;
     private static final int MAX_TUNNEL_LENGTH_HORIZONTAL = 25;
     /**
-     * Directions: 0 = up, 1 = right, 2 = down, 3 = left This array is used to
+     * Directions: 0 = up, 1 = right, 2 = down, 3 = left This array is used two
      * as a weighted random direction selector. As the level is rectangular,
      * digging tunnels horizontally should happen more often than digging
      * vertically.
