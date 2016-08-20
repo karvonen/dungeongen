@@ -10,12 +10,12 @@ En ole varma miten "suorituskykytestausta tai muuta aiheeseen sopivaa testausta"
 
 Yritän tehdä projektini ensi viikon aikana käytännössä valmiiksi sillä tuutorointi ja menossa oleva matematiikan kurssi tulevat viemään suurimman osan ajastani viikolla 6.
 
-Huomautetaan vielä tässäkin vaikka ircissä sanoin: sain kaksi koodikatselmointia, toinen heistä oli varmaankin sekoittanut code to review ja your reviewer kohdat.
 
 
 Refaktorointi 2h
 
 Ohjelmointi 10h
 
+Testien kirjoittaminen 2h
 
-yht. 12h
+yht. 14h
