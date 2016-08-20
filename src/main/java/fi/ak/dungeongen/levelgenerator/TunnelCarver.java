@@ -23,14 +23,15 @@ public class TunnelCarver {
      * @param location location next to a wall where the carving begins.
      */
     public void startCarve(char[][] map, Location location) {
-        if (map[location.getRow() - 1][location.getCol()] == '#') {
-            carveUp(map, location);
-        } else if (map[location.getRow()][location.getCol() + 1] == '#') {
+
+        if (map[location.getRow()][location.getCol() + 1] == '#') {
             carveRight(map, location);
-        } else if (map[location.getRow() + 1][location.getCol()] == '#') {
-            carveDown(map, location);
         } else if (map[location.getRow()][location.getCol() - 1] == '#') {
             carveLeft(map, location);
+        } else if (map[location.getRow() - 1][location.getCol()] == '#') {
+            carveUp(map, location);
+        } else if (map[location.getRow() + 1][location.getCol()] == '#') {
+            carveDown(map, location);
         }
     }
 

@@ -21,6 +21,8 @@ public class LevelGenerator {
     Location stairsUp;
     private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
     private static final int MAX_ROOM_WIDTH = 15; // randoms 0-15  +4 = 4-19
+    
+    //Update tests if following 2 are changed
     private static final int MAX_TUNNEL_LENGTH_VERTICAL = 7;
     private static final int MAX_TUNNEL_LENGTH_HORIZONTAL = 25;
     /**
