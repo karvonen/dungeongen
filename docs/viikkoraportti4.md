@@ -6,6 +6,8 @@ Seuraavaksi yritin parantaa luolastogeneraattorialgoritmiani. Yritin paria lähe
 
 Ohjelmoin käyttämäni tietorakenteita, listan ja jonon, ja niille testit. En kuitenkaan ottanut niitä vielä käyttöön vaan käytän Javan omia tietorakenteita algoritmin kehityksen ajan.
 
+Aloitin myös testaus- ja toteutusdokumenttien kirjoittamisen.
+
 En ole varma miten "suorituskykytestausta tai muuta aiheeseen sopivaa testausta" pitäisi tehdä tässä projektissa. Kaipaisin tähän lisäinfoa.
 
 Yritän tehdä projektini ensi viikon aikana käytännössä valmiiksi sillä tuutorointi ja menossa oleva matematiikan kurssi tulevat viemään suurimman osan ajastani viikolla 6.
@@ -14,8 +16,10 @@ Yritän tehdä projektini ensi viikon aikana käytännössä valmiiksi sillä tu
 
 Refaktorointi 2h
 
-Ohjelmointi 10h
+Ohjelmointi 8h
 
 Testien kirjoittaminen 2h
+
+Vertaisarviointi 2h
 
 yht. 14h
