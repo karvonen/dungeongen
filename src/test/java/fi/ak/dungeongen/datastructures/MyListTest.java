@@ -17,9 +17,9 @@ import static org.junit.Assert.*;
  *
  * @author aa
  */
-public class ArrayListTest {
+public class MyListTest {
 
-    public ArrayListTest() {
+    public MyListTest() {
     }
 
     @BeforeClass
@@ -40,14 +40,14 @@ public class ArrayListTest {
 
     @Test
     public void newListInitialization() {
-        ArrayList<String> testList = new ArrayList<>();
+        MyList<String> testList = new MyList<>();
         assertEquals(0, testList.size());
         assertEquals(true, testList.isEmpty());
     }
 
     @Test
     public void addOneItem() {
-        ArrayList<String> testList = new ArrayList<>();
+        MyList<String> testList = new MyList<>();
         testList.add("test");
         assertEquals(1, testList.size());
         assertEquals("test", testList.get(0));
@@ -55,7 +55,7 @@ public class ArrayListTest {
 
     @Test
     public void addMultipleItems() {
-        ArrayList<String> testList = new ArrayList<>();
+        MyList<String> testList = new MyList<>();
         for (int i = 0; i < 12; i++) {
             testList.add("test " + i);
         }
@@ -70,7 +70,7 @@ public class ArrayListTest {
     public void listSize() {
         Random rand = new Random();
         for (int i = 0; i < 10; i++) {
-            ArrayList<String> testList = new ArrayList<>();
+            MyList<String> testList = new MyList<>();
             int goal = rand.nextInt(155);
             for (int j = 0; j < goal; j++) {
                 testList.add("test");
@@ -81,7 +81,7 @@ public class ArrayListTest {
 
     @Test
     public void clear() {
-        ArrayList<String> testList = new ArrayList<>();
+        MyList<String> testList = new MyList<>();
         for (int i = 0; i < 12; i++) {
             testList.add("test " + i);
         }

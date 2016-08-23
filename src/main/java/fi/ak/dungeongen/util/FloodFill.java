@@ -1,5 +1,6 @@
 package fi.ak.dungeongen.util;
 
+import fi.ak.dungeongen.datastructures.MyQueue;
 import fi.ak.dungeongen.logic.Location;
 import java.util.ArrayDeque;
 import java.util.Arrays;
@@ -12,7 +13,8 @@ import java.util.Random;
 public class FloodFill {
 
     private char[][] map;
-    private ArrayDeque<Location> queue;
+//    private ArrayDeque<Location> queue;
+    private MyQueue<Location> queue;
     private Random random;
 
 //    public FloodFill(char[][] baseMap) {
@@ -66,7 +68,8 @@ public class FloodFill {
      *
      */
     public void start() {
-        queue = new ArrayDeque<>();
+//        queue = new ArrayDeque<>();
+        queue = new MyQueue<>();
         try {
             queue.addLast(getStairsDown());
         } catch (Exception ex) {

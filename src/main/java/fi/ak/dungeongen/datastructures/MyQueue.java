@@ -1,14 +1,11 @@
 package fi.ak.dungeongen.datastructures;
 
-import java.util.Collection;
-import java.util.Deque;
-import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 /**
  * Class provides functionality for a queue.
  */
-public class MyQueue<T> implements Deque<T> {
+public class MyQueue<T> {
 
     private T[] queue;
     private int head;
@@ -31,12 +28,11 @@ public class MyQueue<T> implements Deque<T> {
         queue = temp;
     }
 
-    @Override
-    public void addFirst(T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    /**
+     * Adds an element to the end of the queue.
+     *
+     * @param e element to be added.
+     */
     public void addLast(T e) {
         queue[tail] = e;
         tail++;
@@ -45,17 +41,13 @@ public class MyQueue<T> implements Deque<T> {
         }
     }
 
-    @Override
-    public boolean offerFirst(T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean offerLast(T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
+    /**
+     * Removes and returns the first element of the queue.
+     *
+     * @return first element of the queue.
+     *
+     * @throws NoSuchElementException if list is empty.
+     */
     public T removeFirst() throws NoSuchElementException {
         if (head == tail) {
             throw new NoSuchElementException();
@@ -65,7 +57,13 @@ public class MyQueue<T> implements Deque<T> {
         return first;
     }
 
-    @Override
+    /**
+     * Removes and returns the last element of the queue.
+     *
+     * @return last element of the queue.
+     *
+     * @throws NoSuchElementException if list is empty.
+     */
     public T removeLast() throws NoSuchElementException {
         if (head == tail) {
             throw new NoSuchElementException();
@@ -76,151 +74,31 @@ public class MyQueue<T> implements Deque<T> {
         return last;
     }
 
-    @Override
-    public void push(T e) {
-        addLast(e);
-    }
-
-    @Override
-    public T pop() {
-        return removeFirst();
-    }
-
-    @Override
+    /**
+     * Clears the queue and sets up a new one with default size.
+     */
     public void clear() {
         head = 0;
         tail = 0;
         queue = (T[]) new Object[DEFAULT_SIZE];
     }
 
-    @Override
+    /**
+     * Size of the queue.
+     *
+     * @return int for size of the queue.
+     */
     public int size() {
         return tail - head;
     }
 
-    @Override
+    /**
+     * Checks whether the queue is empty or not.
+     *
+     * @return boolean for queue being empty.
+     */
     public boolean isEmpty() {
         return head == tail;
-    }
-
-    @Override
-    public T pollFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T pollLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T getFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T getLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T peekFirst() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T peekLast() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeFirstOccurrence(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeLastOccurrence(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean add(T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean offer(T e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T remove() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T poll() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T element() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public T peek() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean remove(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean contains(Object o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<T> iterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Iterator<T> descendingIterator() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object[] toArray() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public <T> T[] toArray(T[] a) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean containsAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean removeAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public boolean retainAll(Collection<?> c) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }

@@ -1,8 +1,8 @@
 package fi.ak.dungeongen.levelgenerator;
 
+import fi.ak.dungeongen.datastructures.MyList;
 import fi.ak.dungeongen.logic.Location;
 import fi.ak.dungeongen.util.FloodFill;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -16,7 +16,8 @@ public class LevelGenerator {
     private int height;
     private int width;
     private Random random;
-    private ArrayList<Room> rooms;
+    private MyList<Room> rooms;
+//    private ArrayList<Room> rooms;
     Location stairsDown;
     Location stairsUp;
     private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
@@ -37,7 +38,8 @@ public class LevelGenerator {
         this.random = new Random();
         this.height = height;
         this.width = width;
-        rooms = new ArrayList<>();
+        rooms = new MyList<>();
+//        rooms = new ArrayList<>();
     }
 
     /**

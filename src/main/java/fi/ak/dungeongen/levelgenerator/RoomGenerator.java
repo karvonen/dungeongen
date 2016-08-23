@@ -1,7 +1,7 @@
 package fi.ak.dungeongen.levelgenerator;
 
+import fi.ak.dungeongen.datastructures.MyList;
 import fi.ak.dungeongen.logic.Location;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -46,8 +46,9 @@ public class RoomGenerator {
      *
      * @return boolean true if room fits, false otherwise.
      */
-    public boolean doesRoomFit(List<Room> rooms, Room room) {
-        for (Room existingRoom : rooms) {
+    public boolean doesRoomFit(MyList<Room> rooms, Room room) {
+        for (int i = 0; i < rooms.size(); i++) {
+            Room existingRoom = rooms.get(i);
             boolean overlap = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
                     && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol()
                     && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight()
@@ -57,6 +58,17 @@ public class RoomGenerator {
             }
         }
         return true;
+
+//        for (Room existingRoom : rooms) {
+//            boolean overlap = (room.getLocation().getCol() < existingRoom.getLocation().getCol() + existingRoom.getWidth()
+//                    && room.getLocation().getCol() + room.getWidth() > existingRoom.getLocation().getCol()
+//                    && room.getLocation().getRow() < existingRoom.getLocation().getRow() + existingRoom.getHeight()
+//                    && room.getLocation().getRow() + room.getHeight() > existingRoom.getLocation().getRow());
+//            if (overlap) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     /**

@@ -1,5 +1,6 @@
 package fi.ak.dungeongen.levelgenerator;
 
+import fi.ak.dungeongen.datastructures.MyList;
 import fi.ak.dungeongen.logic.Location;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +87,7 @@ public class RoomGeneratorTest {
         char[][] level = testLevel();
         RoomGenerator generator = new RoomGenerator(rand, 10, 10, level.length, level[0].length);
         Room test = new Room(new Location(3, 2), 4, 5);
-        List<Room> rooms = new ArrayList<>();
+        MyList<Room> rooms = new MyList<>();
         rooms.add(test);
         generator.carveRoom(level, test);
         Room test2 = new Room(new Location(5, 4), 5, 3);
@@ -98,7 +99,7 @@ public class RoomGeneratorTest {
         char[][] level = testLevel();
         RoomGenerator generator = new RoomGenerator(rand, 10, 10, level.length, level[0].length);
         Room test = new Room(new Location(3, 2), 4, 5);
-        List<Room> rooms = new ArrayList<>();
+        MyList<Room> rooms = new MyList<>();
         rooms.add(test);
         generator.carveRoom(level, test);
         Room test2 = new Room(new Location(1, 1), 2, 2);
