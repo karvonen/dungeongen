@@ -12,15 +12,9 @@ public class Game {
 
     private Level level;
     private Ui ui;
-    private Scanner scanner;
-    private LevelGenerator generator;
-    private boolean debugMode;
-    private char[][] testLevel = new char[][]{
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-        {'#', '.', '.', '.', '#', '#', '#', '.', '.', '#'},
-        {'#', '.', '<', '.', '.', '.', '.', '.', '.', '#'},
-        {'#', '.', '.', '.', '#', '#', '#', '#', '>', '#'},
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
+    private final Scanner scanner;
+    private final LevelGenerator generator;
+    private final boolean debugMode;
 
     public Game(Scanner scanner, LevelGenerator generator, boolean debugMode) {
         this.generator = generator;
@@ -51,6 +45,12 @@ public class Game {
      *
      */
     public void startInTestMode() {
+        char[][] testLevel = new char[][]{
+            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
+            {'#', '.', '.', '.', '#', '#', '#', '.', '.', '#'},
+            {'#', '.', '<', '.', '.', '.', '.', '.', '.', '#'},
+            {'#', '.', '.', '.', '#', '#', '#', '#', '>', '#'},
+            {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}};
         this.level = new Level(testLevel);
         this.ui = new Ui(level);
     }

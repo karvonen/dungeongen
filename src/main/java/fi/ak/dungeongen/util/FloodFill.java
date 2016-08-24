@@ -2,7 +2,6 @@ package fi.ak.dungeongen.util;
 
 import fi.ak.dungeongen.datastructures.MyQueue;
 import fi.ak.dungeongen.logic.Location;
-import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -13,9 +12,8 @@ import java.util.Random;
 public class FloodFill {
 
     private char[][] map;
-//    private ArrayDeque<Location> queue;
     private MyQueue<Location> queue;
-    private Random random;
+    private final Random random;
 
 //    public FloodFill(char[][] baseMap) {
 //        setNewMap(baseMap);
@@ -68,7 +66,6 @@ public class FloodFill {
      *
      */
     public void start() {
-//        queue = new ArrayDeque<>();
         queue = new MyQueue<>();
         try {
             queue.addLast(getStairsDown());
@@ -81,7 +78,6 @@ public class FloodFill {
             System.exit(3);
         }
         try {
-
             while (!queue.isEmpty()) {
                 Location current = queue.removeFirst();
 
@@ -106,10 +102,6 @@ public class FloodFill {
                 }
             }
         } catch (ArrayIndexOutOfBoundsException e) {
-            for (char[] row : map) {
-                System.out.print(Arrays.toString(row));
-                System.out.println("");
-            }
             System.exit(1);
         }
     }

@@ -8,7 +8,7 @@ package fi.ak.dungeongen.logic;
 public class Level {
 
     private Player player;
-    private char[][] map;
+    private final char[][] map;
 
     public Level(char[][] map) {
         this.map = map;

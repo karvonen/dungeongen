@@ -7,22 +7,22 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Class generates new levels to play.
+ * Class generates new levels to play. Height of the level to be generated can 
+ * be 10-35 and width 130-150
  *
  */
 public class LevelGenerator {
 
     private char[][] map;
-    private int height;
-    private int width;
-    private Random random;
-    private MyList<Room> rooms;
-//    private ArrayList<Room> rooms;
+    private int height = 30;
+    private int width = 140;
+    private final Random random;
+    private final MyList<Room> rooms;
     Location stairsDown;
     Location stairsUp;
     private static final int MAX_ROOM_HEIGHT = 6; // randoms 0-6   +4 = 4-10
     private static final int MAX_ROOM_WIDTH = 15; // randoms 0-15  +4 = 4-19
-    
+
     //Update tests if following 2 are changed
     private static final int MAX_TUNNEL_LENGTH_VERTICAL = 7;
     private static final int MAX_TUNNEL_LENGTH_HORIZONTAL = 25;
@@ -36,10 +36,15 @@ public class LevelGenerator {
 
     public LevelGenerator(int height, int width) {
         this.random = new Random();
-        this.height = height;
-        this.width = width;
+        if (width >= 30 && width <= 150) {
+            this.width = width;
+        }
+
+        if (height >= 15 && height <= 35) {
+            this.height = height;
+        }
+
         rooms = new MyList<>();
-//        rooms = new ArrayList<>();
     }
 
     /**
@@ -153,7 +158,6 @@ public class LevelGenerator {
             int randomCol = random.nextInt(width - 2) + 1;
             if (map[randomRow][randomCol] == '.') {
                 stairsUp = new Location(randomRow, randomCol);
-//                System.out.println("stairs up: " + stairsUp.getRow() + " " + stairsUp.getCol());
                 break;
             }
         }
@@ -162,7 +166,6 @@ public class LevelGenerator {
             int randomCol = random.nextInt(width - 2) + 1;
             if (map[randomRow][randomCol] == '.' && stairsUp.getCol() != randomCol && stairsUp.getRow() != randomRow) {
                 stairsDown = new Location(randomRow, randomCol);
-//                System.out.println("stairs down: " + stairsDown.getRow() + " " + stairsDown.getCol());
                 break;
             }
         }

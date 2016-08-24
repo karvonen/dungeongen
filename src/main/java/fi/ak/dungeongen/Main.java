@@ -9,7 +9,6 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         LevelGenerator generator = new LevelGenerator(30, 140);
-//        LevelGenerator generator = new LevelGenerator(11, 20);
         Game game = new Game(scanner, generator, false);
         game.start();
     }
