@@ -56,7 +56,7 @@ public class LevelGenerator {
     public char[][] generate() {
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
-        placeRooms(new RoomGenerator(random, MAX_ROOM_HEIGHT, MAX_ROOM_WIDTH, height, width), 222);
+        placeRooms(new RoomGenerator(random, MAX_ROOM_HEIGHT, MAX_ROOM_WIDTH, height, width), 120);
         placeStaircases();
 
         FloodFill floodFill = new FloodFill(map, stairsDown, stairsUp);

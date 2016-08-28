@@ -12,4 +12,5 @@ public class Main {
         Game game = new Game(scanner, generator, false);
         game.start();
     }
+
 }
