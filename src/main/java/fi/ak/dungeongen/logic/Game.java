@@ -36,7 +36,7 @@ public class Game {
         this.level = new Level(map);
         this.ui = new Ui(level);
         ui.draw();
-        System.out.println("1-9 (numpad) to move, w to win instantly:");
+        System.out.println("1-9 (numpad) to move, w to win instantly, q to quit:");
         run();
     }
 
@@ -99,6 +99,8 @@ public class Game {
         } else if (command == 'w') {
             newPlayerLocation.setRow(level.getStaircaseDown().getRow());
             newPlayerLocation.setCol(level.getStaircaseDown().getCol());
+        } else if (command == 'q') {
+            System.exit(0);
         }
 
         if (newPlayerLocation != level.getPlayer().getLocation()) {
