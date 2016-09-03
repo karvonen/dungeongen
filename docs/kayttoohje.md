@@ -12,6 +12,6 @@
 
 ##Ohjelman käyttäminen
 
-Uusi luolasto luodaan automaattisesti ja käyttäjän ei tarvitse antaa mitään syötteitä. Pelaajan on mahdollista liikkua antamalla komentoja numeroina jossa suunnat menevät numpadin numeroiden mukaan. Esimerkiksi antamalla komennon "2" pelihahmo liikkuu alaspäin. Uusi luolasto voidaan generoida liikkumalla portaisiin, < ja >, tai antamalla komento "w". Ohjelman suorituksen voi lopettaa komennolla "q"
+Uusi luolasto luodaan automaattisesti ja käyttäjän ei tarvitse antaa mitään syötteitä. Pelaajan on mahdollista liikkua antamalla komentoja numeroina jossa suunnat menevät numpadin numeroiden mukaan. Esimerkiksi antamalla komennon "2" pelihahmo liikkuu alaspäin. Uusi luolasto voidaan generoida antamalla komento "w" tai liikkumalla portaiden päälle. Ohjelman suorituksen voi lopettaa komennolla "q".
 
 
