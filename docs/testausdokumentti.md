@@ -1,4 +1,4 @@
-Ohjelma on kattavasti yksikkötestattu. Ohjelmoin lyhyitä metodeita joita ei ole vaikea testata ja lisäksi lisäsin joitain integraatiotestejä testaamaan muutaman luokan kokonaisuuksia.
+Ohjelma on kattavasti yksikkötestattu. Ohjelmoin lyhyitä metodeita joita ei ole vaikea testata ja lisäksi tein integraatiotestejä testaamaan muutaman luokan kokonaisuuksia.
 
 Jotkut testit sisältävät paljon sattumanvaraisuutta. Kyseessähän on luolastogeneraattori ja jokainen luolasto tulee olemaan uniikki. Tästä syystä pyrin hyvään yksikkötestaukseen, jos yksittäiset metodit toimivat oikein niin kokonaisuudenkin pitäisi olla toimiva.
 
@@ -16,7 +16,7 @@ Testatessani huomasin että ensimmäinen luolaston generointi generaattorin luom
 
 ![100 luolaston generoinnin kaavio](/docs/100generointia.png)
 
-Tämän kaavion yksittäinen palkki esittää yhteen luolaston generoimiseen kuluneen ajan millisekunteina. Tästä huomaa erityisen hyvin miten ensimmäinen luolasto on todella hidas. En tiedä mistä tämä johtuu koska en tiedä miten Java edes hoitaa uusien olioiden luonnin taustalla. Ehkä oliosta luodaan ensin jokin tynkäversio ja se luodaan kunnolla vasta ensimmäisellä käyttökerralla? Oli syy mikä tahansa mielestäni tämä oli aika mielenkiintoinen yksityiskohta.
+Tämän kaavion yksittäinen palkki esittää yhteen luolaston generoimiseen kuluneen ajan millisekunteina. Tästä huomaa erityisen hyvin miten ensimmäinen luolasto on todella hidas. En ole varma johtuuko tämä just-in-time compilationista vai siitä miten Java käsittelee uusia olioita.
 
 
 Yhden luolaston generointi 100 luolaston ajossa:

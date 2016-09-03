@@ -6,10 +6,9 @@
 
 2. cd dungeongen
 
-3. mvn install
+3. mvn package
 
 4. java -jar target/dungeongen-1.0-SNAPSHOT.jar
-
 
 ##Ohjelman käyttäminen
 
