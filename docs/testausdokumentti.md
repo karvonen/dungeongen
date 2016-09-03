@@ -21,28 +21,28 @@ Tämän kaavion yksittäinen palkki esittää yhteen luolaston generoimiseen kul
 
 Yhden luolaston generointi 100 luolaston ajossa:
 
-*Mediaani 1.82 ms
-*Keskiarvo 2.612 ms
+* Mediaani 1.82 ms
+* Keskiarvo 2.612 ms
 
 
 Huoneiden lisäämisen osuus 100 luolaston ajossa:
 
-*Mediaani 0.0245 ms
-*Keskiarvo 0.0823 ms
+* Mediaani 0.0245 ms
+* Keskiarvo 0.0823 ms
 
 Tässäkin on huomattavaa miten ensimmäisellä kerralla huoneiden lisäys vie yli 150 kertaisesti aikaa verrattuna mediaaniin. Tämä nostaa keskiarvon kaksinkertaiseksi.
 
 
 Tunnelien kaivaminen järkevästi 100 luolaston ajossa:
 
-*Mediaani: 0.844 ms
-*Keskiarvo: 1.407 ms
+* Mediaani: 0.844 ms
+* Keskiarvo: 1.407 ms
 
 
 Toinen tunnelien kaivamiskierros jolla saadaan kaikki huoneet yhdistettyä:
 
-*Mediaani: 0.863 ms
-*Keskiarvo: 1.363 ms
+* Mediaani: 0.863 ms
+* Keskiarvo: 1.363 ms
 
 
 Testausalustana toimi pöytäkone: i5 4670k @ 4.2 Ghz
