@@ -9,7 +9,7 @@ Dokumentointi 3h
 yht. 5h
 
 
-#Koko projekttin käytetty aika 
+#Koko projektiin käytetty aika 
 
 Aika | Kohde |
 -----|--------|
