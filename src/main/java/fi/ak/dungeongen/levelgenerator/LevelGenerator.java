@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 /**
- * Class generates new levels to play. Height of the level to be generated can 
+ * Class generates new levels to play. Height of the level to be generated can
  * be 10-35 and width 130-150
  *
  */
@@ -56,14 +56,20 @@ public class LevelGenerator {
     public char[][] generate() {
         map = new char[height][width];
         fillRect(new Location(0, 0), new Location(width - 1, height - 1), '#');
+
         placeRooms(new RoomGenerator(random, MAX_ROOM_HEIGHT, MAX_ROOM_WIDTH, height, width), 120);
+
         placeStaircases();
 
         FloodFill floodFill = new FloodFill(map, stairsDown, stairsUp);
         TunnelCarver tunnelCarver = new TunnelCarver(MAX_TUNNEL_LENGTH_VERTICAL, MAX_TUNNEL_LENGTH_HORIZONTAL);
-        carve(floodFill, tunnelCarver);
-        desperateCarve(floodFill, new DesperateTunnelCarver());
 
+        carve(floodFill, tunnelCarver);
+
+        long aikaAlussa = System.nanoTime();
+        desperateCarve(floodFill, new DesperateTunnelCarver());
+        long aikaLopussa = System.nanoTime();
+        System.out.println((aikaLopussa - aikaAlussa));
         map[stairsDown.getRow()][stairsDown.getCol()] = '<';
         map[stairsUp.getRow()][stairsUp.getCol()] = '>';
         return map;
