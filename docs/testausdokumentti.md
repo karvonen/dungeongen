@@ -50,4 +50,5 @@ Testausalustana toimi pöytäkone: i5 4670k @ 4.2 Ghz
 
 Suurin osa luolastoon generoimisesta ajasta käytetään siis tunneleiden kaivamiseen ja samalla tarkistamaan onko luolasto yhtenäinen. Tämä ei ole mitenkään yllättävää ja koko ominaisuuden toteuttaminen veikin projektista paljon aikaa.
 
+Kuten aikaisemmin mainittiin, ensimmäiseen luolastoon käytetty aika nostaa keskiarvoa valtavasti ja tämän vuoksi keskiarvot antavat väärän kuvan ohjelman toimivuudesta.
 
