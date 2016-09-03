@@ -22,5 +22,5 @@ Aika | Kohde |
 2h   | Random räpellys |
 2h   | Loppuhiominen |
 
-Yht. 53.5 tuntia
+Koko projekti yhteensä: 53.5 tuntia
 
