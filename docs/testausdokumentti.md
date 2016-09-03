@@ -1,7 +1,10 @@
+#Testaus
+
 Ohjelma on kattavasti yksikkötestattu. Ohjelmoin lyhyitä metodeita joita ei ole vaikea testata ja lisäksi tein integraatiotestejä testaamaan muutaman luokan kokonaisuuksia.
 
 Jotkut testit sisältävät paljon sattumanvaraisuutta. Kyseessähän on luolastogeneraattori ja jokainen luolasto tulee olemaan uniikki. Tästä syystä pyrin hyvään yksikkötestaukseen, jos yksittäiset metodit toimivat oikein niin kokonaisuudenkin pitäisi olla toimiva.
 
+Käytin aikaa myös manuaaliseen testaukseen varmistaakeni että generoidut luolastot ovat kelvollisia. Tämä olisi ollut huomattavan vaikeata toteuttaa ohjelmallisesti.
 
 #Suorituskykytestaus
 
@@ -52,3 +55,20 @@ Suurin osa luolastoon generoimisesta ajasta käytetään siis tunneleiden kaivam
 
 Kuten aikaisemmin mainittiin, ensimmäiseen luolastoon käytetty aika nostaa keskiarvoa valtavasti ja tämän vuoksi keskiarvot antavat väärän kuvan ohjelman toimivuudesta.
 
+##Toistettavuus
+
+Yksittäiseen luolastoon menevän ajan testaukseen muutin main-luokan tähän muotoon. Generaattorin osien testauksessa pidin for loopin mutta siirsin ajanoton testattavan osion kohdalle. Käytin testatessani nanotimeä aikojen lyhyyden takia mutta muutin ne millisekunneiksi tätä dokumenttia varten.
+
+```
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Long> ajat = new ArrayList<>();
+        LevelGenerator generator = new LevelGenerator(30, 140);
+        for (int i = 0; i < 100; i++) {
+            long aikaAlussa = System.nanoTime();
+            char[][] test = generator.generate();
+            long aikaLopussa = System.nanoTime();
+            System.out.println((aikaLopussa - aikaAlussa));
+            ajat.add(aikaLopussa-aikaAlussa);
+            generator.reset();
+        }
+```
