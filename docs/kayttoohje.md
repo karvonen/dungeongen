@@ -2,6 +2,8 @@
 
 ##Ohjelman ajaminen:
 
+Koska kyseessä on konsolisovellus täytyy se ajaa terminaalissa tai esimerkiksi IDE:ssä jossa on console output. Alla ohjeet ohjelman lataamiseen ja ajamiseen.
+
 1. git clone https://github.com/karvonen/dungeongen.git tai lataa ja pura zip.
 
 2. cd dungeongen
