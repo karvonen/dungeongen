@@ -4,7 +4,11 @@ Ohjelma on kattavasti yksikkötestattu. Ohjelmoin lyhyitä metodeita joita ei ol
 
 Jotkut testit sisältävät paljon sattumanvaraisuutta. Kyseessähän on luolastogeneraattori ja jokainen luolasto tulee olemaan uniikki. Tästä syystä pyrin hyvään yksikkötestaukseen, jos yksittäiset metodit toimivat oikein niin kokonaisuudenkin pitäisi olla toimiva.
 
-Käytin aikaa myös manuaaliseen testaukseen varmistaakeni että generoidut luolastot ovat kelvollisia. Tämä olisi ollut huomattavan vaikeata toteuttaa ohjelmallisesti.
+Ohjelma ei ota syötteitä käyttäjältä, suorituskykytestaus tehtiin oletusarvoisilla (koodissa olevilla) luolastogeneraattorin asetuksilla.
+
+Käytin aikaa myös manuaaliseen testaukseen varmistaakseni että generoidut luolastot ovat kelvollisia aina kun muutin jotain algoritmissani. Tämä olisi ollut huomattavan vaikeata toteuttaa ohjelmallisesti.
+
+Yksikkötesteistä oli paljon hyötyä projektin aikana. En käyttänyt test driven developmenttia mutta pidin testejä kuitenkin ajantasalla. Esimerkiksi erikoistapaus jossa portaat ylös ja alas olivat mahdollista mennä samaan ruutuun tuli huomattua testien kautta.
 
 #Suorituskykytestaus
 
