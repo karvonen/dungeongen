@@ -1,10 +1,8 @@
 #Rakenne
 
-Projekti on jaettu muutamaan pakettiin. Ohjelma sisältää mahdollisuuden liikuttaa hahmoa generoiduissa luolastoissa vaikkakin sen alkeellisen käyttöliittymän takia hieman hankalaa. Ei olisi kuitenkaan mahdotonta toteuttaa parempaa käyttöliittymää, en kuitenkaan ole näin tehnyt koska se ei ole tiralabran pääasia.
+Projekti on jaettu muutamaan pakettiin. Logiikka-luokka sisältää koodia joka mahdollistaa liikuttaa hahmoa generoiduissa luolastoissa vaikkakin sen alkeellisen käyttöliittymän takia hieman hankalaa. Parempi käyttöliittymä olisi täytynyt toteuttaa swingillä ja ehkä jonkin kirjaston avulla. En kuitenkaan ole näin tehnyt koska se ei ole tiralabran pääasia ja tekstikäyttöliittymä toimii hyvin.
 
-Itse luolastogeneraattori on täysin erillään pelillisestä osiosta. Generaattori on jaettu moneen luokkaan joista yksi on itse generaattori joka käyttää muita luokkia. RoomGenerator luo ja lisää huoneita. Huoneet voivat olla täysin toistensa vieressä mikä voi antaa huoneille muitakin muotoja kuin pelkkä suorakulmio. 
-
-TunnelCarver kaivaa käytäviä järkevästi ja DesperateTunnelCarver kaivaa tunneleita jos koko luolasto ei ole kokonaan yhtenäinen ensimmäisen kaivamisen jälkeen.
+Itse luolastogeneraattori on täysin erillään pelillisestä osiosta. Generaattori on jaettu moneen luokkaan joista yksi on itse generaattori joka käyttää muita luokkia. RoomGenerator luo ja lisää huoneita. Huoneet voivat olla täysin toistensa vieressä mikä voi antaa huoneille muitakin muotoja kuin pelkkä suorakulmio. TunnelCarver kaivaa käytäviä järkevästi ja DesperateTunnelCarver kaivaa tunneleita jos koko luolasto ei ole kokonaan yhtenäinen ensimmäisen kaivamisen jälkeen.
 
 Käyttöliittymä koostuu yksinkertaisista print-komennoista.
 
@@ -19,6 +17,9 @@ Nykyinen algoritmi antaa luolastoille "elävämmän" olemuksen. Jos olisin toteu
 
 Olen algoritmiini siis loppujen lopuksi aika tyytyväinen. Lähdin toteuttamaan luolastogeneraattoria joka luo luolastoja peliä varten, en akateemisen täydellisiä luolia. Ehkä suurin parannusehdotus olisi jonkinlainen tarkistus onko luola liian avara. Nykyisellä algoritmilla voi tapahtua niin että monta huonetta on vierekkäin ja se johtaa välillä todella isoihin onkaloihin. Jos käyttäisin tätä luolastogeneraattoria oikeassa pelissä niin varmasti tekisin tällaisen tarkistuksen.
 
+#Aika- ja tilavaativuudet
+
+Koska luolastogeneraattorille ei voi suoraan käyttöliittymästä antaa kartan kokoa ei aika- ja tilavaatimusten analysointi ole kovin järkevää.  
  
 #Suorituskyky
 
